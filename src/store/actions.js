@@ -8,12 +8,12 @@ const keysRoute = "keys/";
 
 const getUploadEvents = async ({commit}) => {
     const events = await axios.get(apiUrl + eventRoute);
-    commit('addUploadEventsToStore', events);
+    commit('addUploadEventsToStore', events.data);
 };
 
 const getVideoKeys = async ({commit}) => {
     const keys = await axios.get(apiUrl + keysRoute);
-    commit('addVideoKeysToStore', events);
+    commit('addVideoKeysToStore', keys.data);
 };
 
 export default {

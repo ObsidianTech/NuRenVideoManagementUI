@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  async created() {
+  async mounted() {
     await this.$store.dispatch('getUploadEvents');
     await this.$store.dispatch('getVideoKeys');
   },

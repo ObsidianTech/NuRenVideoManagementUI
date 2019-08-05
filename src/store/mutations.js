@@ -1,10 +1,9 @@
 const addUploadEventsToStore = (state, events) => {
-    state.events.add(events);
+    state.events = events;
 };
 
 const addVideoKeysToStore = (state, keys) => {
-    state.events.add(keys);
-
+    state.keys = keys;
 };
 
 export default {

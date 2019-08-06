@@ -1,13 +1,26 @@
 <template>
     <div>
         <h2>Event Log</h2>
-        {{ this.$store.state.events }}
+        <table>
+            <tr v-for="event in this.events" v-bind:key="event.id">
+                <td>
+                    <p>
+                        The video "{{ event.video }}" was uploaded to the bucket successfully, {{ event.eventTime }}.
+                    </p>
+                </td>
+            </tr>
+        </table>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Events',
+    computed: {
+        events() {
+            return this.$store.state.events;
+        },
+    },
     async mounted() {
         await this.$store.dispatch('getUploadEvents');
     }, 
@@ -15,5 +28,14 @@ export default {
 </script>
 
 <style scoped>
+table {
+    width: 45%;
+    margin: auto;
+}
+
+table, tr, td {
+    border: 1px solid black;
+}
+
 
 </style>

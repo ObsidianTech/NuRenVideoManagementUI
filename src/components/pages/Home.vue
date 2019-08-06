@@ -1,11 +1,15 @@
 <template>
     <div>
-        <div id="nav">
-          <router-link to="/projects"> View Projects</router-link>
-          <router-link to="/new">New Project</router-link>
-          <router-link to="/catalog"> View Catalog</router-link>
+        <div>
+          <div id="nav">
+            <router-link to="/projects"> View Projects</router-link>
+            <router-link to="/new">New Project</router-link>
+            <router-link to="/catalog"> View Catalog</router-link>
+          </div>
         </div>
-        <Events />
+        <div>
+          <Events />
+        </div>
     </div>
 </template>
 

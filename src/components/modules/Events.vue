@@ -29,11 +29,12 @@ export default {
 
 <style scoped>
 table {
-    width: 45%;
+    width: 75%;
     margin: auto;
 }
 
-table, tr, td {
+tr, td {
+    padding-bottom: 3px;
     border: 1px solid black;
 }
 

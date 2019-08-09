@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="column">
-          <div id="nav">
+          <div id="nav" class="vertical-menu">
             <router-link to="/projects"> View Projects</router-link>
             <router-link to="/new">New Project</router-link>
             <router-link to="/catalog"> View Catalog</router-link>
@@ -36,8 +36,17 @@ export default {
   display: flex;
 }
 
-.class {
+.column {
   flex: 50%;
+  margin: 35px;
+}
+
+.vertical-menu {
+  width: 100%;
+}
+
+.vertical-menu a{
+  display: block;
 }
 </style>
 

@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NewProject from './components/modules/NewProject.vue';
 import ViewProjects from './components/modules/ViewProjects.vue';
+import ViewCatalog from './components/modules/ViewCatalog.vue';
 
 Vue.use(Router);
 
@@ -24,6 +25,12 @@ export default new Router({
       path: '/projects',
       name: 'viewProjects',
       component: ViewProjects,
+    },
+
+    {
+      path: '/catalog',
+      name: 'viewCatalog',
+      component: ViewCatalog,
     },
   ]
 })

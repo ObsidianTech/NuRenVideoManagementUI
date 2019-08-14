@@ -1,6 +1,6 @@
 <template>
     <div>
-        New Project
+        View Catalog
         <HomeButton />
     </div>
 </template>
@@ -10,6 +10,6 @@ import HomeButton from '../atoms/HomeButton';
 export default {
     components: {
         HomeButton,
-    }
+    },
 }
 </script>

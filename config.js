@@ -6,12 +6,18 @@ const currentEnv = () =>{
     } else {
         return 'dev';
     }
-} 
+};
+
 const currentEnvAPI = () => {
     return Config.ManagementAPI[currentEnv()];
-}
+};
+
+const currentEnvVideoStream = () => {
+    return Config.VideoAPI[currentEnv()];
+};
+
 export default {
     currentEnv,
     currentEnvAPI,
-
+    currentEnvVideoStream,
 }

@@ -49,11 +49,12 @@ export default {
 
 .video-modal{
     background-color: #fefefe;
-    margin-top: 50px;
+    z-index:  5;
     opacity: 1;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+    height: 50%;
+    margin: auto 0;
 }
 </style>

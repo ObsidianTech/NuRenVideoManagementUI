@@ -17,6 +17,11 @@
                                {{ item.key }}
                            </p>
                        </td>
+                       <td>
+                           <Preview 
+                            :videoKey="item.key"
+                            />
+                       </td>
                    </tr>
                 </table>
             </div>
@@ -27,9 +32,10 @@
 
 <script>
 import HomeButton from '../atoms/HomeButton';
+import Preview from '../atoms/PreviewModal';
 export default {
     components: {
-        HomeButton,
+        HomeButton, Preview,
     },
     computed: {
         keys() {

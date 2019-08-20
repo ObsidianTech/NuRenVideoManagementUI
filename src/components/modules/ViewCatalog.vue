@@ -18,9 +18,7 @@
                            </p>
                        </td>
                        <td>
-                           <Preview 
-                            :videoKey="item.key"
-                            />
+                           <button @click="pushToPreview(item.key)">View</button>
                        </td>
                    </tr>
                 </table>
@@ -32,10 +30,9 @@
 
 <script>
 import HomeButton from '../atoms/HomeButton';
-import Preview from '../atoms/PreviewModal';
 export default {
     components: {
-        HomeButton, Preview,
+        HomeButton,
     },
     computed: {
         keys() {
@@ -44,6 +41,16 @@ export default {
     },
     async mounted() {
         await this.$store.dispatch('getVideoKeys');
+    },
+    methods: {
+        pushToPreview(val) {
+            this.$router.push({
+                name: 'preview',
+                params: {
+                    videoKey: val,
+                },
+            });
+        }
     },
 }
 </script>

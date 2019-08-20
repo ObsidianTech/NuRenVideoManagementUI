@@ -1,32 +1,27 @@
 <template>
     <div>
-        {{ videoKey }}
-        <video controls>
-            <source :src="'http://' + config.currentEnvVideoStream() + 'stream/' + this.videoKey" type="video/mp4">
+        <video class="preview" controls>
+            <source :src="videoUrl" type="video/mp4">
         </video>
     </div>
 </template>
 
 <script>
-import config from '../../../config';
 export default {
     name: 'Preview',
     props: {
-        videoKey: {
+        videoUrl: {
             type: String,
         },
     },
-    data() {
-        return {
-            videoUrl: null,
-        };
-    },
-    mounted() {
-        this.videoUrl = "http://" + config.currentEnvVideoStream() + "stream/" + this.videoKey;
-    }
 }
 </script>
 
 <style scoped>
-    
+.preview{
+    width: 60%;
+    height: auto;
+    margin: auto;
+    padding-bottom: 35px;
+}
 </style>

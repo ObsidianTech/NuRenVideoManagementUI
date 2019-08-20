@@ -18,7 +18,7 @@
                            </p>
                        </td>
                        <td>
-                           <button @click="pushToPreview(item.key)">View</button>
+                           <button @click="pushUrlToPreview(item.key)">View</button>
                        </td>
                    </tr>
                 </table>
@@ -30,6 +30,7 @@
 
 <script>
 import HomeButton from '../atoms/HomeButton';
+import config from '../../../config';
 export default {
     components: {
         HomeButton,
@@ -43,16 +44,20 @@ export default {
         await this.$store.dispatch('getVideoKeys');
     },
     methods: {
-        pushToPreview(val) {
+        pushUrlToPreview(val) {
+            const url = this.createUrl(val)
             this.$router.push({
                 name: 'preview',
                 params: {
-                    videoKey: val,
+                    videoUrl: url,
                 },
             });
-        }
+        },
+        createUrl(key) {
+            return "http://" + config.currentEnvVideoStream() + "stream/" + key;
+        },
     },
-}
+};
 </script>
 
 <style scoped>

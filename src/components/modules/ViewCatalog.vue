@@ -79,7 +79,6 @@ export default {
     height: auto;
     margin: auto;
     word-wrap: normal;
-
 }
 
 .table-container{

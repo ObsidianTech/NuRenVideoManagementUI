@@ -23,5 +23,6 @@ export default {
     height: auto;
     margin: auto;
     padding-bottom: 35px;
+    outline: none;
 }
 </style>

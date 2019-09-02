@@ -11,6 +11,10 @@
               <option disabled value="">Please select one</option>
               <option v-for="item in keys" v-bind:key="item.id">{{ item.key }}</option>
             </select>
+            <h4>Project Title</h4>
+            <input v-model="projectName" />
+            <h4>Project Description</h4>
+            <textarea v-model="projectDesc" />
         </div>
         <HomeButton />
     </div>
@@ -25,6 +29,8 @@ export default {
     data() {
         return {
             selected: null,
+            projectName: '',
+            projectDesc: '',
         };
     },
     computed: {

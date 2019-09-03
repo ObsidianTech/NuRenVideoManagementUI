@@ -15,12 +15,20 @@
             <input v-model="projectName" />
             <h4>Project Description</h4>
             <textarea v-model="projectDesc" />
+            <h4>Video Thumbnail</h4>
+            <div v-if="load">
+                <video controls :src="createUrl(this.selected)" />
+            </div>
+            <div v-else>
+                <h5>Please choose a video file to select a thumbnail. </h5>
+            </div>
         </div>
         <HomeButton />
     </div>
 </template>
 
 <script>
+import config from '../../../config.js';
 import HomeButton from '../atoms/HomeButton';
 export default {
     components: {
@@ -31,11 +39,26 @@ export default {
             selected: null,
             projectName: '',
             projectDesc: '',
+            load: false,
         };
     },
     computed: {
         keys() {
             return this.$store.state.keys;
+        },
+    },
+    watch: {
+        selected(newVal, oldVal){
+            if(newVal){
+                this.load = true;
+            } else {
+                this.load = false;
+            }
+        }
+    },
+    methods: {
+        createUrl(key) {
+            return "http://" + config.currentEnvVideoStream() + "stream/" + key;
         },
     },
     beforeDestroy() {
@@ -63,5 +86,11 @@ export default {
     height: auto;
     margin: auto;
     word-wrap: normal;
+}
+
+video{
+    outline: none;
+    width: 400px;
+    height: auto;
 }
 </style>

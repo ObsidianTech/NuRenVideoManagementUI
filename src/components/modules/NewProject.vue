@@ -17,8 +17,8 @@
             <textarea v-model="projectDesc" />
             <h4>Video Thumbnail</h4>
             <div v-if="load">
-                <video ref="videoSelected" controls :src="createUrl(this.selected)" />
-                <canvas ref="videoCanvas"></canvas>
+                <video ref="videoPane" :loadedmetadata="meta()" controls :src="createUrl(this.selected)" />
+                <canvas></canvas>
             </div>
             <div v-else>
                 <h5>Please choose a video file to select a thumbnail. </h5>
@@ -41,8 +41,7 @@ export default {
             projectName: '',
             projectDesc: '',
             load: false,
-            _video: this.$refs.videoSelected,
-            _canvas: this.$refs.videoCanvas,
+            _video: null,
         };
     },
     computed: {
@@ -57,11 +56,17 @@ export default {
             } else {
                 this.load = false;
             }
-        }
+        },
     },
     methods: {
         createUrl(key) {
             return "http://" + config.currentEnvVideoStream() + "stream/" + key;
+        },
+        meta(){
+            this.$nextTick(() => {
+                console.log(this.$refs.videoPane);
+                this._video = this.$refs.videoPane;
+            })
         },
     },
     beforeDestroy() {

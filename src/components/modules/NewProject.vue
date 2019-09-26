@@ -14,15 +14,12 @@
             <h4>Project Title</h4>
             <input v-model="projectName" />
             <h4>Project Description</h4>
-            <textarea v-model="projectDesc" />
+            <textarea v-model="projectDesc"/>
             <h4>Video Thumbnail</h4>
-            <div v-if="load">
-                <video ref="videoPane" :loadedmetadata="meta()" controls :src="createUrl(this.selected)" />
-                <canvas></canvas>
-            </div>
-            <div v-else>
-                <h5>Please choose a video file to select a thumbnail. </h5>
-            </div>
+            <h5>Choose one of the thumbnails from below.</h5>
+            <span v-for="nail in thumbnails" v-bind:key="nail.id">
+                <component :is="thumbnailComponent" :thumbnail="nail" />
+            </span>
         </div>
         <HomeButton />
     </div>
@@ -31,6 +28,8 @@
 <script>
 import config from '../../../config.js';
 import HomeButton from '../atoms/HomeButton';
+import axios from 'axios';
+import ThumbnailSelector from '../atoms/ThumbnailSelector.vue';
 export default {
     components: {
         HomeButton,
@@ -42,6 +41,8 @@ export default {
             projectDesc: '',
             load: false,
             _video: null,
+            thumbnails: null,
+            thumbnailComponent: ThumbnailSelector,
         };
     },
     computed: {
@@ -53,6 +54,7 @@ export default {
         selected(newVal, oldVal){
             if(newVal){
                 this.load = true;
+                this.generateThumbnails();
             } else {
                 this.load = false;
             }
@@ -62,15 +64,16 @@ export default {
         createUrl(key) {
             return "http://" + config.currentEnvVideoStream() + "stream/" + key;
         },
-        meta(){
+        meta() {
             this.$nextTick(() => {
                 console.log(this.$refs.videoPane);
                 this._video = this.$refs.videoPane;
             })
         },
-    },
-    beforeDestroy() {
-
+        async generateThumbnails() {
+            let nails = await axios.get(this.createUrl(this.selected) + '/thumbnails');
+            this.thumbnails = nails.data;
+        },
     },
 }
 </script>

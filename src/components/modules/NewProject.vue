@@ -26,6 +26,7 @@
                     <img :src="nail">
                 </button>
             </span>
+            <button @click="saveProject()">Save New Project!</button>
         </div>
         <HomeButton />
     </div>
@@ -77,6 +78,15 @@ export default {
         },
         setThumbnail(img) {
             this.selectedThumbnail = img;
+        },
+        saveProject(){
+            const view = {
+                name: this.projectName,
+                description: this.projectDesc,
+                video: this.selected,
+                thumbnail: this.selectedThumbnail,
+            };
+            console.log(view);
         },
     },
 }

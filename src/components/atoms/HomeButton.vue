@@ -17,6 +17,6 @@ export default {
 
 <style scoped>
 .button-container{
-
+    margin-bottom: 30px;
 }
 </style>

@@ -17,8 +17,14 @@
             <textarea v-model="projectDesc"/>
             <h4>Video Thumbnail</h4>
             <h5>Choose one of the thumbnails from below.</h5>
-            <span v-for="nail in thumbnails" v-bind:key="nail.id">
-                <component :is="thumbnailComponent" :thumbnail="nail" />
+            <span class="thumbnail-pane" >
+                <button class="thumbnail" 
+                    v-for="nail in thumbnails" 
+                    v-bind:key="nail.id"
+                    @click="setThumbnail(nail)"
+                >
+                    <img :src="nail">
+                </button>
             </span>
         </div>
         <HomeButton />
@@ -42,6 +48,7 @@ export default {
             load: false,
             _video: null,
             thumbnails: null,
+            selectedThumbnail: '',
             thumbnailComponent: ThumbnailSelector,
         };
     },
@@ -64,15 +71,12 @@ export default {
         createUrl(key) {
             return "http://" + config.currentEnvVideoStream() + "stream/" + key;
         },
-        meta() {
-            this.$nextTick(() => {
-                console.log(this.$refs.videoPane);
-                this._video = this.$refs.videoPane;
-            })
-        },
         async generateThumbnails() {
-            let nails = await axios.get(this.createUrl(this.selected) + '/thumbnails');
+            let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');
             this.thumbnails = nails.data;
+        },
+        setThumbnail(img) {
+            this.selectedThumbnail = img;
         },
     },
 }
@@ -103,5 +107,24 @@ video{
     outline: none;
     width: 400px;
     height: auto;
+}
+
+.thumbnail-pane{
+    display: flex;
+}
+
+.thumbnail{
+    flex: 33.33%;
+    border: none;
+    margin: 10px;
+    padding: 0;
+}
+
+.thumbnail:focus{
+    outline: 2px solid red;
+}
+
+.thumbnail > img{
+    width: 100%;
 }
 </style>

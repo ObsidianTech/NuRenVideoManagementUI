@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="thumbnail" :src="thumbnail"/>
+        <img :src="thumbnail" />
     </div>
 </template>
 
@@ -17,8 +17,4 @@ export default {
 </script>
 
 <style scoped>
-.thumbnail{
-    width: 120px;
-    height: auto;
-}
 </style>

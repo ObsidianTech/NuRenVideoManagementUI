@@ -17,6 +17,10 @@
             <textarea v-model="projectDesc"/>
             <h4>Video Thumbnail</h4>
             <h5>Choose one of the thumbnails from below.</h5>
+            <span v-if="load">
+                <h6>Generating...</h6>
+                <div class="loading"></div>
+            </span>
             <span class="thumbnail-pane" >
                 <button class="thumbnail" 
                     v-for="nail in thumbnails" 
@@ -36,7 +40,6 @@
 import config from '../../../config.js';
 import HomeButton from '../atoms/HomeButton';
 import axios from 'axios';
-import ThumbnailSelector from '../atoms/ThumbnailSelector.vue';
 export default {
     components: {
         HomeButton,
@@ -47,10 +50,8 @@ export default {
             projectName: '',
             projectDesc: '',
             load: false,
-            _video: null,
             thumbnails: null,
             selectedThumbnail: '',
-            thumbnailComponent: ThumbnailSelector,
         };
     },
     computed: {
@@ -75,18 +76,23 @@ export default {
         async generateThumbnails() {
             let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');
             this.thumbnails = nails.data;
+            this.load = false;
         },
         setThumbnail(img) {
             this.selectedThumbnail = img;
         },
         saveProject(){
-            const view = {
-                name: this.projectName,
-                description: this.projectDesc,
-                video: this.selected,
-                thumbnail: this.selectedThumbnail,
-            };
-            console.log(view);
+            if (this.projectDesc 
+                && this.projectName 
+                && this.selected 
+                && this.selectedThumbnail) {
+                const view = {
+                    name: this.projectName,
+                    description: this.projectDesc,
+                    video: this.selected,
+                    thumbnail: this.selectedThumbnail,
+                };
+            }
         },
     },
 }
@@ -136,5 +142,24 @@ video{
 
 .thumbnail > img{
     width: 100%;
+}
+
+.loading{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #000;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    margin: 15px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
 }
 </style>

@@ -95,12 +95,19 @@ export default {
                     video: this.selected,
                     thumbnail: this.selectedThumbnail,
                 };
-                const finished = await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
-                const project = await axios.post(this.createUrlToManagement(), this.view);
+                await axios.post(this.createUrlToManagement(), {
+                    name: this.projectName,
+                    description: this.projectDesc,
+                    video: this.selected,
+                    thumbnail: this.selectedThumbnail, 
+                });
                 this.$router.push("/");
             }
         },
     },
+    async beforeDestroy() {
+        await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
+    }
 }
 </script>
 

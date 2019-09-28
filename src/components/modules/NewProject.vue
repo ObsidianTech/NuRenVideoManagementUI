@@ -74,7 +74,7 @@ export default {
             return "http://" + config.currentEnvVideoStream() + "stream/" + key;
         },
         createUrlToManagement() {
-            return "http://" + config.currentEnvAPI() + '/project';
+            return "http://" + config.currentEnvAPI() + 'project';
         },
         async generateThumbnails() {
             let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');
@@ -84,7 +84,7 @@ export default {
         setThumbnail(img) {
             this.selectedThumbnail = img;
         },
-        saveProject(){
+        async saveProject(){
             if (this.projectDesc 
                 && this.projectName 
                 && this.selected 
@@ -95,10 +95,10 @@ export default {
                     video: this.selected,
                     thumbnail: this.selectedThumbnail,
                 };
+                const finished = await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
+                const project = await axios.post(this.createUrlToManagement(), this.view);
+                this.$router.push("/");
             }
-            const finished = await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
-            const project = await axios.post(this.createUrlToManagement(), this.view);
-            this.$router.push("/");
         },
     },
 }

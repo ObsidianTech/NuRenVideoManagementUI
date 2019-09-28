@@ -73,6 +73,9 @@ export default {
         createUrl(key) {
             return "http://" + config.currentEnvVideoStream() + "stream/" + key;
         },
+        createUrlToManagement() {
+            return "http://" + config.currentEnvAPI() + '/project';
+        },
         async generateThumbnails() {
             let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');
             this.thumbnails = nails.data;
@@ -93,6 +96,9 @@ export default {
                     thumbnail: this.selectedThumbnail,
                 };
             }
+            const finished = await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
+            const project = await axios.post(this.createUrlToManagement(), this.view);
+            this.$router.push("/");
         },
     },
 }

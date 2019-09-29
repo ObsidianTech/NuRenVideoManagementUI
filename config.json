@@ -1,6 +1,6 @@
 {
     "ManagementAPI": {
-        "dev" : "localhost:8000/"
+        "dev" : "52.14.167.238/"
     },
     "VideoAPI": {
         "dev": "3.19.76.105/"

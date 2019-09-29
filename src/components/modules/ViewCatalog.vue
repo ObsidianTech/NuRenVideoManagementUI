@@ -18,7 +18,7 @@
                            </p>
                        </td>
                        <td>
-                           <button @click="pushUrlToPreview(item.key)">View</button>
+                           <button class="viewButton" @click="pushUrlToPreview(item.key)">View</button>
                        </td>
                    </tr>
                 </table>
@@ -90,5 +90,20 @@ export default {
 
 table{
     margin: auto;
+}
+
+.viewButton{
+    border: 1px solid maroon;
+    color: white;
+    background-color: maroon;
+    transition: 300ms ease;
+    margin: 0 6px;
+    border-radius: 15px;
+    outline: none;
+}
+
+.viewButton:hover{
+    color: black;
+    background-color: white;
 }
 </style>

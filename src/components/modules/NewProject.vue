@@ -30,7 +30,7 @@
                     <img :src="nail">
                 </button>
             </span>
-            <button @click="saveProject()">Save New Project!</button>
+            <button class="saveButton" @click="saveProject()">Save New Project!</button>
         </div>
         <HomeButton />
     </div>
@@ -174,5 +174,21 @@ video{
 }
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
+}
+
+.saveButton{
+    margin: 15px;
+    padding: 20px 50px;
+    color: white;
+    background-color: maroon;
+    border: 1px solid maroon;
+    box-shadow: none;
+    transition: 300ms ease;
+    outline: none;
+}
+
+.saveButton:hover{
+    color: maroon;
+    background-color: white;
 }
 </style>

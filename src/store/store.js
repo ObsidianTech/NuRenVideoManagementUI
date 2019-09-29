@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     events: [],
     keys: [],
+    projects: [],
   },
   mutations,
   actions,

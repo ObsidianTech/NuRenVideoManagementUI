@@ -30,7 +30,10 @@
                     <img :src="nail">
                 </button>
             </span>
-            <button class="saveButton" @click="saveProject()">Save New Project!</button>
+            <button class="saveButton" @click="saveProject()">
+                <span v-if="saving">Saving...</span>
+                <span v-else>Save New Project!</span>
+            </button>
         </div>
         <HomeButton />
     </div>
@@ -52,6 +55,7 @@ export default {
             load: false,
             thumbnails: null,
             selectedThumbnail: '',
+            saving: false,
         };
     },
     computed: {
@@ -89,12 +93,7 @@ export default {
                 && this.projectName 
                 && this.selected 
                 && this.selectedThumbnail) {
-                const view = {
-                    name: this.projectName,
-                    description: this.projectDesc,
-                    video: this.selected,
-                    thumbnail: this.selectedThumbnail,
-                };
+                this.saving = true;
                 await axios.post(this.createUrlToManagement(), {
                     name: this.projectName,
                     description: this.projectDesc,
@@ -106,6 +105,7 @@ export default {
         },
     },
     async beforeDestroy() {
+        this.saving = true;
         await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
     }
 }

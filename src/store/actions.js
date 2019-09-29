@@ -5,6 +5,7 @@ const apiUrl = 'http://' + config.currentEnvAPI();
 
 const eventRoute = "events/";
 const keysRoute = "keys/";
+const projectsRoute = "project/";
 
 const getUploadEvents = async ({commit}) => {
     const events = await axios.get(apiUrl + eventRoute);
@@ -16,7 +17,13 @@ const getVideoKeys = async ({commit}) => {
     commit('addVideoKeysToStore', keys.data);
 };
 
+const getProjects = async ({commit}) => {
+    const projects = await axios.get(apiUrl + projectsRoute);
+    commit('addProjectsToStore', projects.data);
+};
+
 export default {
     getUploadEvents,
     getVideoKeys,
+    getProjects,
 }

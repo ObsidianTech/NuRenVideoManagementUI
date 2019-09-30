@@ -10,7 +10,7 @@
                     <button @click="editProject(project)">Edit</button>
                     <button>Delete</button>
                 </div>
-                <div class="editPane" v-show="edit">
+                <div class="editPane" v-show="id === project.id ? true : false ">
                     <input v-model="newName" />
                     <input v-model="newDesc"/>
                     <button>Save Changes</button>
@@ -50,7 +50,6 @@ export default {
             this.newName = project.name;
             this.newDesc = project.description;
             this.id = project._id;
-            this.edit = true;
         },
     }
 }

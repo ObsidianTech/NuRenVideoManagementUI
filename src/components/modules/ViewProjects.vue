@@ -10,7 +10,7 @@
                     <button @click="editProject(project)">Edit</button>
                     <button>Delete</button>
                 </div>
-                <div class="editPane" v-show="id === project.id ? true : false ">
+                <div class="editPane" v-if="id === project.id ? true : false ">
                     <input v-model="newName" />
                     <input v-model="newDesc"/>
                     <button>Save Changes</button>

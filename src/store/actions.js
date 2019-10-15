@@ -22,8 +22,13 @@ const getProjects = async ({commit}) => {
     commit('addProjectsToStore', projects.data);
 };
 
+const editProject = ({commit}, project) => {
+    commit('setCurrentEdit', project);
+}
+
 export default {
     getUploadEvents,
     getVideoKeys,
     getProjects,
+    editProject,
 }

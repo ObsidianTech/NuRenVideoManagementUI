@@ -10,12 +10,6 @@
                     <button @click="editProject(project)">Edit</button>
                     <button>Delete</button>
                 </div>
-                <div class="editPane" v-if="id === project.id ? true : false ">
-                    <input v-model="newName" />
-                    <input v-model="newDesc"/>
-                    <button>Save Changes</button>
-                    <button>Cancel</button>
-                </div>
             </div>
         </div>
         <HomeButton />
@@ -47,10 +41,9 @@ export default {
     },
     methods: {
         editProject(project) {
-            this.newName = project.name;
-            this.newDesc = project.description;
-            this.id = project._id;
-        },
+            this.$store.dispatch('editProject', project);
+            this.$router.push("/edit");
+        }
     }
 }
 </script>
@@ -84,20 +77,5 @@ export default {
 .buttonPane > button:hover {
     background-color: white;
     color: maroon;
-}
-
-.editPane {
-    margin: 25px;
-    display: inline-block;
-}
-
-.editPane > input {
-    width: 100%;
-    padding: 8px;
-    margin: 15px;
-    border: none;
-    border-bottom: 1px solid black;
-    outline: none;
-    font-size: 18px;
 }
 </style>

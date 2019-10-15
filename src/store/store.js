@@ -10,6 +10,7 @@ export default new Vuex.Store({
     events: [],
     keys: [],
     projects: [],
+    editProject: null,
   },
   mutations,
   actions,

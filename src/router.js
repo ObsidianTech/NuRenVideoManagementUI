@@ -5,6 +5,7 @@ import NewProject from './components/modules/NewProject.vue';
 import ViewProjects from './components/modules/ViewProjects.vue';
 import ViewCatalog from './components/modules/ViewCatalog.vue';
 import Preview from './components/modules/Preview.vue';
+import Edit from './components/modules/Edit.vue';
 
 Vue.use(Router);
 
@@ -33,11 +34,18 @@ export default new Router({
       name: 'viewCatalog',
       component: ViewCatalog,
     },
+
     {
       path: '/preview',
       name: 'preview',
       component: Preview,
       props: true,
+    },
+    
+    {
+      path: '/edit',
+      name: 'edit',
+      component: Edit,
     },
   ]
 })

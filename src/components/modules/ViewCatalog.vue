@@ -103,7 +103,7 @@ table{
 }
 
 .viewButton:hover{
-    color: black;
+    color: maroon;
     background-color: white;
 }
 </style>

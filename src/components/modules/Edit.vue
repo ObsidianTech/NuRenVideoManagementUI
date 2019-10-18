@@ -16,6 +16,7 @@
 <script>
 import axios from 'axios';
 import HomeButton from '../atoms/HomeButton';
+import config from '../../../config.js'; 
 export default {
     components: {
         HomeButton,
@@ -30,9 +31,18 @@ export default {
     methods: {
         cancel() {
             this.$router.push('/projects');
+        },        
+        createUrlToManagement() {
+            return "http://" + config.currentEnvAPI() + 'update';
         },
         async saveChanges() {
-        }
+            await axios.post(this.createUrlToManagement(), {
+                id: this.id,
+                name: this.name,
+                description: this.description,
+            });
+            this.$router.push('/projects');
+        },
     }
 }
 </script>

@@ -6,14 +6,15 @@
             <input v-model="description"/>
         </div>
         <div class="editButtons">
-            <button>Save Changes</button>
-            <button>Cancel</button>
+            <button @click="saveChanges()">Save Changes</button>
+            <button @click="cancel()">Cancel</button>
         </div>
         <HomeButton />        
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import HomeButton from '../atoms/HomeButton';
 export default {
     components: {
@@ -26,6 +27,13 @@ export default {
             description: this.$store.state.editProject.description,
         }
     },
+    methods: {
+        cancel() {
+            this.$router.push('/projects');
+        },
+        async saveChanges() {
+        }
+    }
 }
 </script>
 

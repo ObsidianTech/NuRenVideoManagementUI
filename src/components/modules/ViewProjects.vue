@@ -8,7 +8,7 @@
                 <img class="thumbnail" :src="project.thumbnail" />
                 <div class="buttonPane">
                     <button @click="editProject(project)">Edit</button>
-                    <button>Delete</button>
+                    <button @click="deleteProject(project)">Delete</button>
                 </div>
             </div>
         </div>
@@ -40,9 +40,18 @@ export default {
         await this.$store.dispatch('getProjects');
     },
     methods: {
+        createUrlToManagement() {
+            return "http://" + config.currentEnvAPI() + 'delete';
+        },
         editProject(project) {
             this.$store.dispatch('editProject', project);
-            this.$router.push("/edit");
+            this.$router.push('/edit');
+        },
+        async deleteProject(project) {
+            if(confirm("Are you sure you want to delete " + project.name + "?")) {
+                await axios.post(this.createUrlToManagement(),{ id: project._id });
+                this.$router.push('/projects'); 
+            }           
         }
     }
 }

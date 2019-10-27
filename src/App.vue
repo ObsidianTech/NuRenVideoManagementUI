@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="container">
+    <h1>{{ env }}</h1>
     <img class="logo" src='./assets/white.jpg' />
     <h1>Video Manager</h1>
     <router-view />
@@ -7,7 +8,13 @@
 </template>
 
 <script>
+import config from '../config.js';
 export default {
+  computed: {
+    env() {
+      return config.currentEnv();
+    },
+  },
   async mounted() {
     await this.$store.dispatch('getVideoKeys');
   },

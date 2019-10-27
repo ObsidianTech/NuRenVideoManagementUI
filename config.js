@@ -1,8 +1,8 @@
 import Config from './config.json';
 
 const currentEnv = () =>{
-    if(process.env.VUE_APP_ENV) {
-        return process.env.VUE_APP_ENV;
+    if(process.env.PROJECTENV) {
+        return process.env.PROJECTENV;
     } else {
         return 'dev';
     }

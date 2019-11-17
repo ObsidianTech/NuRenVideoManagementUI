@@ -104,11 +104,6 @@ export default {
             }
         },
     },
-    async beforeDestroy() {
-        if(this.saving) {            
-            await axios.get(this.createUrl(this.selected) + '/thumbnail-selected');
-        }
-    }
 }
 </script>
 

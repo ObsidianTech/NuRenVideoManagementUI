@@ -1,12 +1,12 @@
 {
     "ManagementAPI": {
         "dev" : "localhost:8000/",
-        "qa" : "13.59.51.25/",
-        "prod" : "18.219.97.247/"
+        "qa" : "qa.api.nurenproductions.com/",
+        "prod" : "api.nurenproductions.com/"
     },
     "VideoAPI": {
         "dev": "localhost:8000/",
-        "qa" : "13.59.51.25/",
-        "prod" : "18.220.135.148/"
+        "qa" : "qa.api.nurenproductions.com/",
+        "prod" : "api.nurenproductions.com/"
     }
 }

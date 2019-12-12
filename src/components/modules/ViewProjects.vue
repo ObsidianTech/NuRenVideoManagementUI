@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         createUrlToManagement() {
-            return "http://" + config.currentEnvAPI() + 'delete';
+            return "https://" + config.currentEnvAPI() + 'delete';
         },
         editProject(project) {
             this.$store.dispatch('editProject', project);

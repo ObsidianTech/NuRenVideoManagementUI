@@ -75,10 +75,10 @@ export default {
     },
     methods: {
         createUrl(key) {
-            return "http://" + config.currentEnvVideoStream() + "stream/" + key;
+            return "https://" + config.currentEnvVideoStream() + "stream/" + key;
         },
         createUrlToManagement() {
-            return "http://" + config.currentEnvAPI() + 'project';
+            return "https://" + config.currentEnvAPI() + 'project';
         },
         async generateThumbnails() {
             let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');

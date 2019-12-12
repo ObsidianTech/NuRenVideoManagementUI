@@ -33,7 +33,7 @@ export default {
             this.$router.push('/projects');
         },        
         createUrlToManagement() {
-            return "http://" + config.currentEnvAPI() + 'update';
+            return "https://" + config.currentEnvAPI() + 'update';
         },
         async saveChanges() {
             await axios.post(this.createUrlToManagement(), {

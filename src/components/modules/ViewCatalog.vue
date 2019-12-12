@@ -54,7 +54,7 @@ export default {
             });
         },
         createUrl(key) {
-            return "http://" + config.currentEnvVideoStream() + "stream/" + key;
+            return "https://" + config.currentEnvVideoStream() + "stream/" + key;
         },
     },
 };

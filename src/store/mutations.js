@@ -1,11 +1,3 @@
-const addUploadEventsToStore = (state, events) => {
-    state.events = events;
-};
-
-const addVideoKeysToStore = (state, keys) => {
-    state.keys = keys;
-};
-
 const addProjectsToStore = (state, projects) => {
     state.projects = projects;
 };
@@ -13,9 +5,13 @@ const addProjectsToStore = (state, projects) => {
 const setCurrentEdit = (state, project) => {
     state.editProject = project;
 }
+
+const addCommentsToStore = (state, comments) => {
+    state.comments = comments.reverse();
+}
+
 export default {
-    addUploadEventsToStore,
-    addVideoKeysToStore,
     addProjectsToStore,
     setCurrentEdit,
+    addCommentsToStore,
 };

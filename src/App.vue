@@ -16,7 +16,7 @@ export default {
     },
   },
   async mounted() {
-    await this.$store.dispatch('getVideoKeys');
+    await this.$store.dispatch('getComments');
   },
 };
 </script>

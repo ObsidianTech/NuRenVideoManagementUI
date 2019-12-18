@@ -1,25 +1,19 @@
 import axios from 'axios';
 import config from '../../config.js';
 
-const apiUrl = 'https://' + config.currentEnvAPI();
+const apiUrl = config.currentEnvSecurity() + config.currentEnvAPI();
 
-const eventRoute = "events/";
-const keysRoute = "keys/";
 const projectsRoute = "project/";
-
-const getUploadEvents = async ({commit}) => {
-    const events = await axios.get(apiUrl + eventRoute);
-    commit('addUploadEventsToStore', events.data);
-};
-
-const getVideoKeys = async ({commit}) => {
-    const keys = await axios.get(apiUrl + keysRoute);
-    commit('addVideoKeysToStore', keys.data);
-};
+const commentsRoute = "comment/";
 
 const getProjects = async ({commit}) => {
     const projects = await axios.get(apiUrl + projectsRoute);
     commit('addProjectsToStore', projects.data);
+};
+
+const getComments = async ({commit}) => {
+    const comments = await axios.get(apiUrl + commentsRoute);
+    commit('addCommentsToStore', comments.data);
 };
 
 const editProject = ({commit}, project) => {
@@ -27,8 +21,7 @@ const editProject = ({commit}, project) => {
 }
 
 export default {
-    getUploadEvents,
-    getVideoKeys,
     getProjects,
     editProject,
+    getComments,
 }

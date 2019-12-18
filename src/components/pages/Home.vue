@@ -1,15 +1,10 @@
 <template>
     <div class="container">
-        <div class="column">
-          <div id="nav" class="vertical-menu">
-            <router-link to="/projects"> View Projects</router-link>
-            <router-link to="/new">New Project</router-link>
-            <router-link to="/catalog"> View Catalog</router-link>
-          </div>
-        </div>
-        <div class="column">
-          <Events />
-        </div>
+      <div id="nav" class="vertical-menu">
+        <router-link to="/projects"> View Projects</router-link>
+        <router-link to="/new">New Project</router-link>
+        <router-link to="/comments"> View Messages</router-link>
+      </div>
     </div>
 </template>
 
@@ -17,10 +12,7 @@
 import Events from '../modules/Events';
 export default {
     name: 'home',
-    components: {
-        Events,
-    }
-}
+};
 </script>
 
 <style scoped>

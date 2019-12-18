@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NewProject from './components/modules/NewProject.vue';
 import ViewProjects from './components/modules/ViewProjects.vue';
-import ViewCatalog from './components/modules/ViewCatalog.vue';
+import ViewComments from './components/modules/ViewComments.vue';
 import Preview from './components/modules/Preview.vue';
 import Edit from './components/modules/Edit.vue';
 
@@ -30,9 +30,9 @@ export default new Router({
     },
 
     {
-      path: '/catalog',
-      name: 'viewCatalog',
-      component: ViewCatalog,
+      path: '/comments',
+      name: 'viewComments',
+      component: ViewComments,
     },
 
     {
@@ -41,11 +41,11 @@ export default new Router({
       component: Preview,
       props: true,
     },
-    
+
     {
       path: '/edit',
       name: 'edit',
       component: Edit,
     },
   ]
-})
+});

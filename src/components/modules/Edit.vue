@@ -9,14 +9,14 @@
             <button @click="saveChanges()">Save Changes</button>
             <button @click="cancel()">Cancel</button>
         </div>
-        <HomeButton />        
+        <HomeButton />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import HomeButton from '../atoms/HomeButton';
-import config from '../../../config.js'; 
+import config from '../../../config.js';
 export default {
     components: {
         HomeButton,
@@ -31,9 +31,9 @@ export default {
     methods: {
         cancel() {
             this.$router.push('/projects');
-        },        
+        },
         createUrlToManagement() {
-            return "https://" + config.currentEnvAPI() + 'update';
+            return config.currentEnvSecurity() + config.currentEnvAPI() + 'update';
         },
         async saveChanges() {
             await axios.post(this.createUrlToManagement(), {

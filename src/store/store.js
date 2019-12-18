@@ -7,10 +7,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    events: [],
-    keys: [],
     projects: [],
     editProject: null,
+    comments: [],
   },
   mutations,
   actions,

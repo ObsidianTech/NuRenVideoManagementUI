@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         createUrlToManagement() {
-            return "https://" + config.currentEnvAPI() + 'delete';
+            return config.currentEnvSecurity() + config.currentEnvAPI() + 'delete';
         },
         editProject(project) {
             this.$store.dispatch('editProject', project);
@@ -50,8 +50,8 @@ export default {
         async deleteProject(project) {
             if(confirm("Are you sure you want to delete " + project.name + "?")) {
                 await axios.post(this.createUrlToManagement(),{ id: project._id });
-                this.$router.push('/projects'); 
-            }           
+                this.$router.push('/projects');
+            }
         }
     }
 }

@@ -16,8 +16,13 @@ const currentEnvVideoStream = () => {
     return Config.VideoAPI[currentEnv()];
 };
 
+const currentEnvSecurity = () => {
+    return currentEnv() === 'dev' ? 'http://' : 'https://';
+}
+
 export default {
     currentEnv,
     currentEnvAPI,
     currentEnvVideoStream,
+    currentEnvSecurity,
 }

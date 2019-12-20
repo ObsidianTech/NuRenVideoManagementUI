@@ -6,6 +6,7 @@ import ViewProjects from './components/modules/ViewProjects.vue';
 import ViewComments from './components/modules/ViewComments.vue';
 import Preview from './components/modules/Preview.vue';
 import Edit from './components/modules/Edit.vue';
+import Thumbnail from './components/modules/Thumbnail.vue';
 
 Vue.use(Router);
 
@@ -47,5 +48,11 @@ export default new Router({
       name: 'edit',
       component: Edit,
     },
+
+    {
+      path: 'thumbnail',
+      name: 'thumbnail',
+      components: Thumbnail,
+    }
   ]
 });

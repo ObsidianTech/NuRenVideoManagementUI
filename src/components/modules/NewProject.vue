@@ -3,37 +3,21 @@
         <div class="container">
             <h1 class="page-header">New Project</h1>
             <h3>
-                This is the page to create a new project. Select one of the files from the drop down.
-                Give it a title, a discription, and choose a cover art for it. 
+                This is the page to create a new project.
+                Give it a title, a discription, submit the embed code, and upload a thumbnail.
             </h3>
-            <h4>File</h4>
-            <select v-model="selected">
-              <option disabled value="">Please select one</option>
-              <option v-for="item in keys" v-bind:key="item.id">{{ item.key }}</option>
-            </select>
             <h4>Project Title</h4>
             <input v-model="projectName" />
             <h4>Project Description</h4>
             <textarea v-model="projectDesc"/>
-            <h4>Video Thumbnail</h4>
-            <h5>Choose one of the thumbnails from below.</h5>
-            <span v-if="load">
-                <h6>Generating...</h6>
-                <div class="loading"></div>
-            </span>
-            <span class="thumbnail-pane" >
-                <button class="thumbnail" 
-                    v-for="nail in thumbnails" 
-                    v-bind:key="nail.id"
-                    @click="setThumbnail(nail)"
-                >
-                    <img :src="nail">
+            <h4>Embed Code</h4>
+            <textarea v-model="embedCode"/>
+            <span>
+                <button class="saveButton" @click="saveProject()">
+                    <span v-if="saving">Saving...</span>
+                    <span v-else>Save New Project!</span>
                 </button>
             </span>
-            <button class="saveButton" @click="saveProject()">
-                <span v-if="saving">Saving...</span>
-                <span v-else>Save New Project!</span>
-            </button>
         </div>
         <HomeButton />
     </div>
@@ -49,29 +33,11 @@ export default {
     },
     data() {
         return {
-            selected: null,
             projectName: '',
             projectDesc: '',
-            load: false,
-            thumbnails: null,
-            selectedThumbnail: '',
+            embedCode: '',
             saving: false,
         };
-    },
-    computed: {
-        keys() {
-            return this.$store.state.keys;
-        },
-    },
-    watch: {
-        selected(newVal, oldVal){
-            if(newVal){
-                this.load = true;
-                this.generateThumbnails();
-            } else {
-                this.load = false;
-            }
-        },
     },
     methods: {
         createUrl(key) {
@@ -80,25 +46,15 @@ export default {
         createUrlToManagement() {
             return config.currentEnvSecurity() + config.currentEnvAPI() + 'project';
         },
-        async generateThumbnails() {
-            let nails =  await axios.get(this.createUrl(this.selected) + '/thumbnails');
-            this.thumbnails = nails.data;
-            this.load = false;
-        },
-        setThumbnail(img) {
-            this.selectedThumbnail = img;
-        },
         async saveProject(){
-            if (this.projectDesc 
-                && this.projectName 
-                && this.selected 
-                && this.selectedThumbnail) {
+            if (this.projectDesc
+                && this.projectName
+                && this.embedCode) {
                 this.saving = true;
                 await axios.post(this.createUrlToManagement(), {
                     name: this.projectName,
                     description: this.projectDesc,
-                    video: this.selected,
-                    thumbnail: this.selectedThumbnail, 
+                    video: this.embedCode,
                 });
                 this.$router.push("/");
             }
@@ -173,7 +129,6 @@ video{
 }
 
 .saveButton{
-    margin: 15px;
     padding: 20px 50px;
     color: white;
     background-color: maroon;

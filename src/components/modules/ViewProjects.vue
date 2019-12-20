@@ -9,6 +9,7 @@
                 <div class="buttonPane">
                     <button @click="editProject(project)">Edit</button>
                     <button @click="deleteProject(project)">Delete</button>
+                    <button v-if="thumbnail()"></button>
                 </div>
             </div>
         </div>

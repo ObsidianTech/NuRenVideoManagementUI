@@ -9,7 +9,7 @@
                 <div class="buttonPane">
                     <button @click="editProject(project)">Edit</button>
                     <button @click="deleteProject(project)">Delete</button>
-                    <button v-if="thumbnail()"></button>
+                    <button @click="thumbnail(project)" v-if="!project.thumbnail">Select Thumbnail</button>
                 </div>
             </div>
         </div>
@@ -41,6 +41,10 @@ export default {
         await this.$store.dispatch('getProjects');
     },
     methods: {
+        thumbnail(project) {
+            this.$store.dispatch('editProject', project);
+            this.$router.push('/thumbnail');
+        },
         createUrlToManagement() {
             return config.currentEnvSecurity() + config.currentEnvAPI() + 'delete';
         },

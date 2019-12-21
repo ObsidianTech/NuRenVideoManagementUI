@@ -50,9 +50,9 @@ export default new Router({
     },
 
     {
-      path: 'thumbnail',
+      path: '/thumbnail',
       name: 'thumbnail',
-      components: Thumbnail,
+      component: Thumbnail,
     }
   ]
 });

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     projects: [],
     editProject: null,
     comments: [],
+    videoList: null,
   },
   mutations,
   actions,

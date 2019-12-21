@@ -5,6 +5,7 @@ const apiUrl = config.currentEnvSecurity() + config.currentEnvAPI();
 
 const projectsRoute = "project/";
 const commentsRoute = "comment/";
+const listRoute = "list/";
 
 const getProjects = async ({commit}) => {
     const projects = await axios.get(apiUrl + projectsRoute);
@@ -20,8 +21,14 @@ const editProject = ({commit}, project) => {
     commit('setCurrentEdit', project);
 }
 
+const getVideoList = async ({commit}) => {
+    const list = await axios.get(apiUrl + listRoute);
+    commit('setVideoList', list.data);
+}
+
 export default {
     getProjects,
     editProject,
     getComments,
+    getVideoList,
 };

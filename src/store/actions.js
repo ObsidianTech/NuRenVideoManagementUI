@@ -26,9 +26,20 @@ const getVideoList = async ({commit}) => {
     commit('setVideoList', list.data);
 }
 
+const getCurrentThumbnail = async ({commit}, payload) => {
+    const pic = await axios.get(apiUrl
+            + 'stream/'
+            + payload.key
+            + '/'
+            + payload.time
+            + '/thumbnail');
+    commit('setCurrentThumbnail', pic.data);
+};
+
 export default {
     getProjects,
     editProject,
     getComments,
     getVideoList,
+    getCurrentThumbnail,
 };

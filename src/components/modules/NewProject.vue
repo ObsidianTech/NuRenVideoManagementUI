@@ -12,12 +12,10 @@
             <textarea v-model="projectDesc"/>
             <h4>Embed Code</h4>
             <textarea v-model="embedCode"/>
-            <span>
-                <button class="saveButton" @click="saveProject()">
-                    <span v-if="saving">Saving...</span>
-                    <span v-else>Save New Project!</span>
-                </button>
-            </span>
+            <button class="saveButton" @click="saveProject()">
+                <span v-if="saving">Saving...</span>
+                <span v-else>Save New Project!</span>
+            </button>
         </div>
         <HomeButton />
     </div>
@@ -129,6 +127,8 @@ video{
 }
 
 .saveButton{
+    display: block;
+    margin: 0 auto;
     padding: 20px 50px;
     color: white;
     background-color: maroon;

@@ -11,6 +11,7 @@ export default new Vuex.Store({
     editProject: null,
     comments: [],
     videoList: null,
+    currentThumbnail: null,
   },
   mutations,
   actions,

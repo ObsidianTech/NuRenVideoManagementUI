@@ -14,9 +14,14 @@ const setVideoList = (state, list) => {
     state.videoList = list;
 };
 
+const setCurrentThumbnail = (state, pic) => {
+    state.currentThumbnail = pic;
+};
+
 export default {
     addProjectsToStore,
     setCurrentEdit,
     addCommentsToStore,
     setVideoList,
+    setCurrentThumbnail,
 };

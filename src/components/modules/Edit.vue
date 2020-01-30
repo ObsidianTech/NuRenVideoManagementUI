@@ -4,6 +4,7 @@
         <div class="editPane">
             <input v-model="name"/>
             <input v-model="description"/>
+            <input v-model="video"/>
         </div>
         <div class="editButtons">
             <button @click="saveChanges()">Save Changes</button>
@@ -26,6 +27,7 @@ export default {
             id: this.$store.state.editProject._id,
             name: this.$store.state.editProject.name,
             description: this.$store.state.editProject.description,
+            video: this.$store.state.editProject.video,
         }
     },
     methods: {
@@ -40,6 +42,7 @@ export default {
                 id: this.id,
                 name: this.name,
                 description: this.description,
+                video: this.video,
             });
             this.$router.push('/projects');
         },

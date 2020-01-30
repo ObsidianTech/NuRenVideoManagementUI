@@ -1,30 +1,23 @@
 # Initializing Variables
 _env=$1
-_imagetag=nurenvideomanagementui-$_env
+_imagetag=nurenmanagement-$_env
 echo $_imagetag
 
-# Initializing functions
-buildImage()
-{    
-    docker build --no-cache --build-arg VUE_APP_ENVIRONMENT=$_env -t "$_imagetag" .
-}
+#Stop container
+docker stop $_imagetag
 
-awsLogin()
-{
-    aws ecr get-login --no-include-email --region us-east-2 | bash
-}
+#Remove container
+docker rm --force $_imagetag
 
-ecrPush()
-{
-    docker tag $_imagetag:latest 614222560511.dkr.ecr.us-east-2.amazonaws.com/$_imagetag:latest
-    docker push 614222560511.dkr.ecr.us-east-2.amazonaws.com/$_imagetag:latest
-}
+#Remove image
+docker rmi $_imagetag
 
-buildImage
+#Build new image
+docker build --no-cache --build-arg PROJECTENV=$_env -t "$_imagetag" .
 
-awsLogin
+#Run new _imagetag based on env
+docker run -d -p 3002:80 --name "$_imagetag" $_imagetag
 
-ecrPush
-
+echo $_imagetag new version up! 
 
 exit 0

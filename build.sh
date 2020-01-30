@@ -13,7 +13,7 @@ docker rm --force $_imagetag
 docker rmi $_imagetag
 
 #Build new image
-docker build --no-cache --build-arg PROJECTENV=$_env -t "$_imagetag" .
+docker build --no-cache --build-arg VUE_APP_ENVIRONMENT=$_env -t "$_imagetag" .
 
 #Run new _imagetag based on env
 docker run -d -p 3002:80 --name "$_imagetag" $_imagetag

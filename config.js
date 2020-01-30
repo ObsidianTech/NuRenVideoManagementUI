@@ -17,7 +17,7 @@ const currentEnvVideoStream = () => {
 };
 
 const currentEnvSecurity = () => {
-    return currentEnv() === 'dev' ? 'http://' : 'https://';
+    return currentEnv() === 'prod' ? 'https://' : 'http://';
 }
 
 export default {

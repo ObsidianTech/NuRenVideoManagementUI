@@ -13,7 +13,7 @@
                 </div>
                 <div class="column">
                     <img :src="thumbnail" class="thumbnail">
-                    <input @mouseup="setCurrent($event.target.value)" type="range" min="1" :max="15" value="1">
+                    <input @mouseup="setCurrent($event.target.value)" type="range" min="2" :max="15" value="2">
                 </div>
             </div>
             <div class="buttons">

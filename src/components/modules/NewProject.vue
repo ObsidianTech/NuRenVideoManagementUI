@@ -5,13 +5,25 @@
             <h3>
                 This is the page to create a new project.
                 Give it a title, a discription, submit the embed code, and upload a thumbnail.
-            </h3>
+            </h3>            
+            <h4>Video</h4>
+            <select v-model="videoKey">
+                <option disabled value="">Please select one</option>
+                <option v-for="item in videoList" v-bind:key="item.id">{{ item }}</option>
+            </select>
             <h4>Project Title</h4>
             <input v-model="projectName" />
             <h4>Project Description</h4>
             <textarea v-model="projectDesc"/>
             <h4>Embed Code</h4>
-            <textarea v-model="embedCode"/>
+            <textarea v-model="embedCode"/>  
+            <h4>Video TimeStamp</h4>          
+            <div v-if="embedCode">
+                <div class="class" v-html="embedCode">
+                    {{ embedCode }}
+                </div>
+                <input v-model="timestamp" />
+            </div>
             <button class="saveButton" @click="saveProject()">
                 <span v-if="saving">Saving...</span>
                 <span v-else>Save New Project!</span>
@@ -29,20 +41,27 @@ export default {
     components: {
         HomeButton,
     },
+    computed: {
+        videoList() {
+            return this.$store.state.videoList;
+        },
+    },
     data() {
         return {
             projectName: '',
             projectDesc: '',
             embedCode: '',
             saving: false,
+            videoKey: '',
+            timestamp: '',
         };
     },
+    async mounted(){
+       await this.$store.dispatch('getVideoList');
+    },
     methods: {
-        createUrl(key) {
-            return config.currentEnvSecurity() + config.currentEnvVideoStream() + "stream/" + key;
-        },
         createUrlToManagement() {
-            return config.currentEnvSecurity() + config.currentEnvAPI() + 'project';
+            return config.currentEnvSecurity() + config.currentEnvAPI() + 'project/new';
         },
         async saveProject(){
             if (this.projectDesc

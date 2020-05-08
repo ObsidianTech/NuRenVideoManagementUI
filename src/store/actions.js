@@ -5,7 +5,7 @@ const apiUrl = config.currentEnvSecurity() + config.currentEnvAPI();
 
 const projectsRoute = "project/";
 const commentsRoute = "comment/";
-const listRoute = "list/";
+const listRoute = "video/list/";
 
 const getProjects = async ({commit}) => {
     const projects = await axios.get(apiUrl + projectsRoute);

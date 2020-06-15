@@ -19,10 +19,10 @@
             <textarea v-model="embedCode"/>  
             <h4>Video TimeStamp</h4>          
             <div v-if="embedCode">
+                <input v-model="timestamp" />
                 <div class="class" v-html="embedCode">
                     {{ embedCode }}
                 </div>
-                <input v-model="timestamp" />
             </div>
             <button class="saveButton" @click="saveProject()">
                 <span v-if="saving">Saving...</span>
@@ -69,9 +69,11 @@ export default {
                 && this.embedCode) {
                 this.saving = true;
                 await axios.post(this.createUrlToManagement(), {
-                    name: this.projectName,
+                    displayName: this.projectName,
                     description: this.projectDesc,
-                    video: this.embedCode,
+                    vimeoLink: this.embedCode,
+                    timestamp: this.timestamp,
+                    s3VideoKey: this.videoKey,
                 });
                 this.$router.push("/");
             }

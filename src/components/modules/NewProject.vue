@@ -66,7 +66,8 @@ export default {
         async saveProject(){
             if (this.projectDesc
                 && this.projectName
-                && this.embedCode) {
+                && this.embedCode
+                && this.videoKey) {
                 this.saving = true;
                 await axios.post(this.createUrlToManagement(), {
                     displayName: this.projectName,

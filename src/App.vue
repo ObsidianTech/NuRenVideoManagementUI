@@ -17,6 +17,7 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('getComments');
+    await this.$store.dispatch('getContent');
   },
 };
 </script>

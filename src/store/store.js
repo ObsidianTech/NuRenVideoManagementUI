@@ -12,6 +12,7 @@ export default new Vuex.Store({
     comments: [],
     videoList: null,
     currentThumbnail: null,
+    content: null,
   },
   mutations,
   actions,

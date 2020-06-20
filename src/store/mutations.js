@@ -18,10 +18,15 @@ const setCurrentThumbnail = (state, pic) => {
     state.currentThumbnail = pic;
 };
 
+const addContentToStore = (state, content) => {
+    state.content = content;
+}
+
 export default {
     addProjectsToStore,
     setCurrentEdit,
     addCommentsToStore,
     setVideoList,
     setCurrentThumbnail,
+    addContentToStore,
 };

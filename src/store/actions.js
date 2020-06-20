@@ -6,6 +6,12 @@ const apiUrl = config.currentEnvSecurity() + config.currentEnvAPI();
 const projectsRoute = "project/";
 const commentsRoute = "comment/";
 const listRoute = "video/list/";
+const contentRoute = 'content/';
+
+const getContent = async ({commit}) => {
+    const content = await axios.get(apiUrl + contentRoute);
+    commit('addContentToStore', content.data);
+};
 
 const getProjects = async ({commit}) => {
     const projects = await axios.get(apiUrl + projectsRoute);
@@ -42,4 +48,5 @@ export default {
     getComments,
     getVideoList,
     getCurrentThumbnail,
+    getContent,
 };

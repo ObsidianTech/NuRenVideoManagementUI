@@ -2,14 +2,14 @@
     <div>
         <h1 class="page-header">View Projects</h1>
         <div class="pageContainer">
-            <div v-for="project in projects" v-bind:key="project.id" class="project">
-                <h3>{{ project.name }}</h3>
-                <p>{{ project.description }}</p>
-                <img class="thumbnail" :src="project.thumbnail" />
+            <div v-for="item in content" v-bind:key="item.id" class="project">
+                <h3>{{ item.displayName }}</h3>
+                <p>{{ item.description }}</p>
+                <img class="thumbnail" :src="createUrlToManagement() + 'content/' + item.thumbnail" alt="" />
                 <div class="buttonPane">
-                    <button @click="editProject(project)">Edit</button>
+                    <!-- <button @click="editProject(project)">Edit</button>
                     <button @click="deleteProject(project)">Delete</button>
-                    <button @click="thumbnail(project)" v-if="!project.thumbnail">Select Thumbnail</button>
+                    <button @click="thumbnail(project)" v-if="!project.thumbnail">Select Thumbnail</button> -->
                 </div>
             </div>
         </div>
@@ -33,20 +33,22 @@ export default {
         }
     },
     computed: {
-        projects() {
-            return this.$store.state.projects;
+        content() {
+            return this.$store.state.content;
         },
     },
-    async mounted() {
-        await this.$store.dispatch('getProjects');
-    },
     methods: {
+        async getThumbnail(key) {
+            return await axios.get(this.createUrlToManagement()
+                + 'content/'
+                + key);
+        },
         thumbnail(project) {
             this.$store.dispatch('editProject', project);
             this.$router.push('/thumbnail');
         },
         createUrlToManagement() {
-            return config.currentEnvSecurity() + config.currentEnvAPI() + 'delete';
+            return config.currentEnvSecurity() + config.currentEnvAPI();
         },
         editProject(project) {
             this.$store.dispatch('editProject', project);

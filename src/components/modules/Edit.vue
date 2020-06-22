@@ -25,9 +25,9 @@ export default {
     data() {
         return {
             id: this.$store.state.editProject._id,
-            name: this.$store.state.editProject.name,
+            name: this.$store.state.editProject.displayName,
             description: this.$store.state.editProject.description,
-            video: this.$store.state.editProject.video,
+            video: this.$store.state.editProject.vimeoLink,
         }
     },
     methods: {

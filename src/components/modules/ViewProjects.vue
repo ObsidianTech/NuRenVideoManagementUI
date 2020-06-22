@@ -7,9 +7,9 @@
                 <p>{{ item.description }}</p>
                 <img class="thumbnail" :src="createUrlToManagement() + 'content/' + item.thumbnail" alt="" />
                 <div class="buttonPane">
-                    <!-- <button @click="editProject(project)">Edit</button>
-                    <button @click="deleteProject(project)">Delete</button>
-                    <button @click="thumbnail(project)" v-if="!project.thumbnail">Select Thumbnail</button> -->
+                    <button @click="editProject(item)">Edit</button>
+                    <button @click="deleteProject(item)">Delete</button>
+                    <button @click="thumbnail(item)" v-if="!item.thumbnail">Select Thumbnail</button>
                 </div>
             </div>
         </div>

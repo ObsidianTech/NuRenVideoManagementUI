@@ -9,7 +9,7 @@
                 <div class="buttonPane">
                     <button @click="editProject(item)">Edit</button>
                     <button @click="deleteProject(item)">Delete</button>
-                    <button @click="thumbnail(item)" v-if="!item.thumbnail">Select Thumbnail</button>
+                    <!-- <button @click="thumbnail(item)" v-if="!item.thumbnail">Select Thumbnail</button> -->
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@ export default {
         },
         async deleteProject(project) {
             if(confirm("Are you sure you want to delete " + project.name + "?")) {
-                await axios.post(this.createUrlToManagement(),{ id: project._id });
+                await axios.post(this.createUrlToManagement() + "delete/",{ id: project._id });
                 this.$router.push('/projects');
             }
         }

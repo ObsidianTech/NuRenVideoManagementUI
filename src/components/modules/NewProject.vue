@@ -12,7 +12,7 @@
                 <option
                     v-for="item in videoList"
                     v-bind:key="item.id"
-                    v-if="item != 'thumbnails/'"
+                    v-if="!isThumbnailLink(item)"
                 >
                     {{ item }}
                 </option>
@@ -84,6 +84,9 @@ export default {
                 });
                 this.$router.push("/");
             }
+        },
+        isThumbnailLink(key) {
+            return key.includes('thumbnails');
         },
     },
 }

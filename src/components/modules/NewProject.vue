@@ -24,6 +24,7 @@
             <h4>Embed Code</h4>
             <textarea v-model="embedCode"/>
             <h4>Video TimeStamp</h4>
+            <h6 v-if="!this.timestamp > 0" class="zero">This timestamp must be greater than 0.</h6>
             <div v-if="embedCode">
                 <input v-model="timestamp" />
                 <div class="class" v-html="embedCode">
@@ -73,7 +74,9 @@ export default {
             if (this.projectDesc
                 && this.projectName
                 && this.embedCode
-                && this.videoKey) {
+                && this.videoKey
+                && this.timestamp
+                && this.timestamp > 0) {
                 this.saving = true;
                 await axios.post(this.createUrlToManagement(), {
                     displayName: this.projectName,
@@ -172,5 +175,9 @@ video{
 .saveButton:hover{
     color: maroon;
     background-color: white;
+}
+
+.zero {
+    color: red;
 }
 </style>
